@@ -3,7 +3,6 @@
 # Variables generales de las que hace uso el programa
 sleep_time=2
 os_system=$OSTYPE
-packet_manager=""
 
 # Informamos al usuario de que comienza la instalacion de docker
 echo "Vamos a comenzar la instalacion de Docker"
@@ -39,6 +38,8 @@ then
 		sudo dnf install docker-ce docker-ce-cli containerd.io
 		clear
 		echo "Instalacion finalizada, verifique que docker funciona correctamente"
+		# Añadimos al usuario al grupo de docker
+		sudo usermod -aG docker $USER
 	fi
 else
 	echo "No se ha podido detectar el sistema operativo"
