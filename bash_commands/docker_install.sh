@@ -20,6 +20,8 @@ then
 		echo "El sistema operativo es fedora"
 		sleep $sleep_time
 		echo "Instalamos los plugins para el gestor de paquetes dnf"
+		# Actualizamos los repositorios del sistema
+		sudo dnf update
 		# Instalamos los plugins para el gestor de paquetes dnf
 		sudo dnf install dnf-plugins-core
 		# Revisamos la version de fedora para añadir el repositorio de docker-ce
@@ -40,7 +42,10 @@ then
 		echo "Instalacion finalizada, verifique que docker funciona correctamente"
 		# Añadimos al usuario al grupo de docker
 		sudo usermod -aG docker $USER
+		echo "Deberias de reiniciar el dispositivo para poder usar docker sin sudo"   
 	fi
 else
-	echo "No se ha podido detectar el sistema operativo"
+	# Informamos al usuario de que no se ha detectado su distribucion de Linux
+	echo "El sistema operativo no es una distribucion localizada por la aplicacion."
+	sleep $sleep_time
 fi
